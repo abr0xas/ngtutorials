@@ -1,0 +1,8 @@
+<div class="container">
+        <div class="col-md-6" id="componentParent">
+            <h1>Component Parent</h1>
+             <h4>{{subttitle}}</h4>
+             <h3>{{textFromChild}}</h3>
+             <app-child (messageEvent)="receiveMessage($event)" [tittletochild]="tittle"></app-child>
+        </div>
+</div>
