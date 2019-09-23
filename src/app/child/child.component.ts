@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-child',
@@ -6,17 +7,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./child.component.css']
 })
 export class ChildComponent implements OnInit {
-  @Input() tittletochild: string;
-  varFromChild: string= "Hola vengo desde el component hijo";
-  
-  @Output() messageEvent = new EventEmitter<string>();
 
-  constructor() { }
+  message:string;   
 
-  sendMessage(){
-     this.messageEvent.emit(this.varFromChild);
-  }
+  constructor( private data: DataService ) {  }
+
+ 
   ngOnInit() {
+    this.data.currentMessage.subscribe(message => this.message = message);
   }
 
 }

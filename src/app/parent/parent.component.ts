@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-parent',
@@ -6,22 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./parent.component.css']
 })
 export class ParentComponent implements OnInit {
-  subttitle: string = "variable desde parent";
-  tittle: string = "variable from parent to child";
-  textFromChild: string;
-  constructor() { }
+
+  message: string;
+ 
+  constructor( private data: DataService) { }
 
   ngOnInit() {
+    this.data.currentMessage.subscribe(message => this.message = message);
   }
 
-  receiveMessage(event){
-    if(this.textFromChild!=null){
-      this.textFromChild="";
-
-    }else{
-      this.textFromChild= event;
-    }
-    
-    }
+   
 
 }
